@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        .profile-container {
+            width: 60%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-item {
+            margin-bottom: 20px;
+        }
+
+        .separator {
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        .profile-label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .product-info {
+            background-color: #f3f3f3;
+            border: 1px solid #e6e6e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 30px;
+        }
+
+        .product-info h4 {
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+
+        .product-info ul {
+            padding: 0;
+        }
+
+        .product-info li {
+            margin-bottom: 10px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h1>Məhsul İzləmə</h1>
+        <div class="profile-item">
+            <span class="profile-label">İstifadəçi:</span> {{ user.username }}
+        </div>
+        <ul>
+            {% for booking in user.booking_set.all %}
+                <li class="profile-item">
+                    <span class="profile-label">Məhsulun adı:</span> {{ booking.product }}
+                </li>
+                <li class="profile-item">
+                    <span class="profile-label">Məhsulun çəkisi (qram):</span> {{ booking.weight|default:"Not available" }}
+                </li>
+                 <!-- Ayracı sadece burada ekleyin -->
+                <li class="profile-item">
+                    <span class="profile-label">Price:</span> {{ booking.price }}
+                </li>
+                <li class="profile-item">
+                    <span class="profile-label">Status:</span> {{ booking.status }}
+                </li>
+                <div class="separator"></div>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

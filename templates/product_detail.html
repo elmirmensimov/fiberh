@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Fiber Kargo - Ürün Detayı</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      h1 {
+        font-size: 24px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
+      h3 {
+        font-size: 18px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
+      p {
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+      .delivered {
+        color: green;
+        font-weight: bold;
+      }
+      .not-delivered {
+        color: red;
+        font-weight: bold;
+      }
+      /* new style for blue color */
+      .blue-color {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1 class="blue-color">Fiber Kargo - Ürün Detayı</h1>
+      {% for mehsul in products %}
+        <h3>Ürün Adı: {{ mehsul.name }}</h3>
+        <p>Ağırlık: {{ mehsul.weight }} kg</p>
+        <p>Qiymet: {{ mehsul.price }} AZN</p>
+        <p>Sipariş Tarihi: {{ mehsul.order_date }}</p>
+        <p>
+          Çatdırılma Statusu :
+          {% if mehsul.delivered %}
+            <span class="delivered">"Catdırıldı"</span>
+          {% else %}
+            <span class="not-delivered">"Catdirilmadi"</span>
+          {% endif %}
+        </p>
+      {% endfor %}
+      <hr>
+    </div>
+  </body>
+</html>
